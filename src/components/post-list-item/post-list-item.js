@@ -1,14 +1,53 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './post-list-item.css';
 
-const PostListItem = () => {
-  return ( 
-    <li className="app-list-item d-flex justify-content-between">
-      <span className="app-list-label">Hello</span>
+class PostListItem extends Component {
+
+  state = {
+    important: false,
+    like: false
+  }
+  
+  // Событие изменения поста на важный и наоборот
+  onImportant = () => {
+    this.setState(({important}) => ({
+      important: !important
+    }))
+  }
+  
+  onLike = () => {
+    this.setState(({like}) => ({
+      like: !like
+    }))
+  }
+  
+  render() { 
+    // Переменная для свойств, поступающих из постов
+    const {label} = this.props;
+    const {important, like} = this.state;
+    
+    // Переменная для добавления классов в пост
+    let classNames = 'app-list-item d-flex justify-content-between';
+    if (important) {
+      classNames +=' important';
+    }
+    if (like) {
+      classNames +=' like';
+    }
+
+    return ( 
+      <div className={classNames}>
+        <span 
+        className="app-list-item-label"
+        onClick={this.onLike}>
+          {label}
+        </span>
         <div className="d-flex justify-content-center align-items-center">
           <button 
           type="button" 
-          className="btn-star btn-sm">
+          className="btn-star btn-sm"
+          // Переключение поста на важный и наоборот
+          onClick={this.onImportant}>
             <i className="fa fa-star"></i>
           </button>
           <button 
@@ -18,8 +57,9 @@ const PostListItem = () => {
           </button>
             <i className="fa fa-heart"></i>
       </div>
-    </li>
-  );
+    </div>
+    );
+  }
 }
- 
+  
 export default PostListItem;
