@@ -8,11 +8,13 @@ import PostAddForm from "../post-add-form";
 import './app.css';
 
 const App = () => {
-const data = [
-  { label: "Start to learn React", important: true, id: "rgfdb" },
-  { label: "Now I know about state in React", important: false, id: "cvbcb" },
-  { label: "Need a break to play Destiny 2", important: false, id: "vhxzs" },
-]
+
+  const data = [
+    { label: "Start to learn React", important: true, id: "rgfdb" },
+    { label: "Now I know about state in React", important: false, id: "cvbcb" },
+    { label: "Need a break to play Destiny 2", important: false, id: "vhxzs" },
+  ]
+
   return (
     <div className="app">
       <AppHeader/>
@@ -20,7 +22,9 @@ const data = [
         <SearchPanel/>
         <PostStatusFilter/>
       </div>
-      <PostList posts = {data}/>
+      <PostList 
+      // Проверка data на наличие только объектов 
+      posts = {data.filter(item => typeof(item) === "object")}/>
       <PostAddForm/>
     </div>
   )
