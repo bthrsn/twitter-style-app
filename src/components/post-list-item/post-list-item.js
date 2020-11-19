@@ -23,7 +23,8 @@ class PostListItem extends Component {
   
   render() { 
     // Переменная для свойств, поступающих из постов
-    const {label} = this.props;
+    // В деструктуризацию добавим новое свойство для удаления постов onDelete
+    const {label, onDelete} = this.props;
     const {important, like} = this.state;
     
     // Переменная для добавления классов в пост
@@ -52,7 +53,9 @@ class PostListItem extends Component {
           </button>
           <button 
           type="button" 
-          className="btn-trash btn-sm">
+          className="btn-trash btn-sm"
+          // Добавим событие6 удаление постов по клику, если бы не было деструктуризации выше - надо было бы писать this.props.onDelete
+          onClick={onDelete}>
             <i className="fa fa-trash-o"></i>
           </button>
             <i className="fa fa-heart"></i>
