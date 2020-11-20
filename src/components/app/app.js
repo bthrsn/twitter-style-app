@@ -7,18 +7,7 @@ import PostStatusFilter from '../post-status-filter';
 import PostList from "../post-list";
 import PostAddForm from "../post-add-form";
 
-import styled from 'styled-components';
-
-// Стили для div, в котором заключены все элементы приложения
-const AppBlock = styled.div`
-  margin: 0 auto;
-  max-width: 800px;
-`
-
-// // Можно на основе созданного компонента - создать новый и добавить к нему стилей. Старые стили сохранятся
-// const StyledAppBlock = styled(AppBlock)`
-//   background-color: black;
-// `
+import './app.sass';
 
 export default class App extends Component {
 
@@ -64,25 +53,7 @@ export default class App extends Component {
       }
     })
   }
-  
-  // onToggle = (id, {props}) => {
-  //   this.setState(({data}) => {
-  //     // Находим индекс элемента по переданному id
-  //     const index = data.findIndex(elem => elem.id === id),
-  //     // Записываем его в переменную
-  //           oldItem = data[index],
-  //     // Перезаписываем свойство like этого элемента через новую переменную
-  //           newItem = {...oldItem, props: !oldItem.props},
-  //     // Заменяем старый элемент на новый в state через новую переменную
-  //           newData = [...data.slice(0, index), newItem, ...data.slice(index + 1)]
-      
-  //     return {
-  //       data: newData
-  //     }        
-  //   });
     
-  // }
-  
   onToggleImportant = (id) => {
   
     this.setState(({data}) => {
@@ -153,7 +124,7 @@ export default class App extends Component {
         visiblePosts = this.filterPosts(this.searchPosts(data, term), filter);
   
     return (
-      <AppBlock>
+      <div className="app">
         <AppHeader
         likedPosts={likedPosts}
         allPosts={allPosts} />
@@ -172,7 +143,7 @@ export default class App extends Component {
           onToggleLiked={this.onToggleLiked} />
         <PostAddForm
         onAdd={this.addItem} />
-      </AppBlock>
+      </div>
     )
   }
 }
