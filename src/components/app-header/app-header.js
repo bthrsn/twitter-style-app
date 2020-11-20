@@ -19,13 +19,13 @@ const Header = styled.div`
     }
 `
 
-const AppHeader = () => {
+const AppHeader = ({likedPosts, allPosts}) => {
   return (
   // В стилях передано условие: если у элемента есть свойство colored - он будет красный
   // Также созданный ранее как div элемент можно превраттить в ссылку, если добавить к названию элемента в JSX значение as="a"
     <Header>
       <h1>Mikhail Liakhovets</h1>
-      <h2>5 записей, из них понравилось 0</h2>
+      <h2>{allPosts} записей, из них понравилось {likedPosts}</h2>
     </Header>
   
   )

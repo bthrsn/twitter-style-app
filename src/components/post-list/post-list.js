@@ -3,7 +3,7 @@ import PostListItem from '../post-list-item';
 import { ListGroup } from 'reactstrap';
 import './post-list.sass';
 
-const PostList = ({posts, onDelete}) => {
+const PostList = ({posts, onDelete, onToggleImportant, onToggleLiked}) => {
   
   // Переменная для перебора массива с постами
   const elements = posts
@@ -16,7 +16,9 @@ const PostList = ({posts, onDelete}) => {
                 <PostListItem 
                   {...postProps} 
                   // Cвойство элемента для удаления поста, которое определяет пост по id, который мы передаем выше
-                  onDelete={() => onDelete(id)}/>
+                  onDelete={() => onDelete(id)}
+                  onToggleImportant={() => onToggleImportant(id)}
+                  onToggleLiked={() => onToggleLiked(id)} />
               </li>)
     })
   
